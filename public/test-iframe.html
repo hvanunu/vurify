@@ -10,13 +10,18 @@
         <script src="lib/underscore.js"></script>
         <script src="iframe.js"></script>
         <script>
-            localStorage.setItem('vurify:id', "7873878782352565");
-            localStorage.getItem('vurify:id')
+             localStorage.getItem('vurify:user_id')
                 .done(function(res){
-                    console.log(res);
+                   if(res === null){
+                         // TODO: dynamic generation from server;
+                        localStorage.setItem('vurify:user_id', "7873878782352565")
+                         // TODO: dynamic generation from server;
+                        localStorage.setItem('vurify:vendor_id', "423656562454571");
+                   }
+                   else {
+                        // TODO: load image from id
+                   }
                 });
-            localStorage.removeItem('test')
-                .done(function(res){});
         </script>
     </body>
 </html>
