@@ -11,8 +11,8 @@
         <script src="iframe.js"></script>
         <script>
              localStorage.getItem('vurify:user_id')
-                .done(function(res){
-                   if(res === null){
+                .done(function(id){
+                   if(id === null){
                          // TODO: dynamic generation from server;
                         localStorage.setItem('vurify:user_id', "7873878782352565")
                          // TODO: dynamic generation from server;

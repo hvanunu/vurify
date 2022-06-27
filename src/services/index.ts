@@ -4,4 +4,11 @@ import users from './users/users.service';
 
 export default function (app: Application): void {
   app.configure(users);
+  app.get("/iframe/:apiKey", function(req: any, res: any){
+    res.render('iframe', {apiKey: req.params.apiKey})
+  })
+
+  app.get("/parent_v1", function(req: any, res: any){
+    res.render('v1_login')
+  })
 }
