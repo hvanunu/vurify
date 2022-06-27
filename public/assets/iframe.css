@@ -16,6 +16,7 @@
     bottom: 0px;
     margin: 2px;
 }
+
 .userImage{
     background-size: cover;
     width: 100%;
@@ -28,6 +29,7 @@
     top: 50%;
     left: 16px;
 }
+
 .logo{
     background-size: cover;
     transform: translate(0, -50%);
