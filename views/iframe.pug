@@ -3,9 +3,10 @@ html
         link(rel='stylesheet', href='/assets/iframe.css')
     body
         span#apiKey(hidden)= apiKey
-        div.container
-            div.signature
-                img.userImage(src="/assets/default.png", alt="Signature")
+        div.outer
+            div.container
+                div.signature
+                    img.userImage(src="/assets/default.png", alt="Signature")
 
         script(src="/lib/jquery.min.js")
         script(src="/lib/underscore.js")
