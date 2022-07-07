@@ -4,52 +4,53 @@ head
     script(src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js")
     script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
 body
-    div(class="container")
-        H1 Create Your Signature
-        div.vurify
-            div.row
-                div.col
-                    canvas(class="mb-1", width=300, height=100)
-            div.row
-                div.col
-                    button(type="button", class="btn btn-primary btn-block", onclick="signaturePad.clear()") Clear  
-                       
-                div.col
-                    button(type="button", class="btn btn-success btn-block", onclick="save()") Save                   
+    block content
+        div(class="container")
+            H1 Create Your Signature
+            div.vurify
+                div.row
+                    div.col
+                        canvas(class="mb-1", width=300, height=100)
+                div.row
+                    div.col
+                        button(type="button", class="btn btn-primary btn-block", onclick="signaturePad.clear()") Clear  
+                        
+                    div.col
+                        button(type="button", class="btn btn-success btn-block", onclick="save()") Save                   
 style. 
-    canvas {
-        background-color: #eeeeee;
-        border: solid
-    }
-    .vurify {
-        width: 304px;
-        height: 140px;
-    }
+        canvas {
+            background-color: #eeeeee;
+            border: solid
+        }
+        .vurify {
+            width: 304px;
+            height: 140px;
+        }
 script. 
-    const canvas = document.querySelector("canvas");
-    const signaturePad = new SignaturePad(canvas);
-    var data = "";
-    signaturePad.clear();
+        const canvas = document.querySelector("canvas");
+        const signaturePad = new SignaturePad(canvas);
+        var data = "";
+        signaturePad.clear();
 
-    function save() {
-        let userKey = Math.floor(Math.random() * 100000000);
-        localStorage.setItem('vurify:userKey', userKey);
+        function save() {
+            let userKey = Math.floor(Math.random() * 100000000);
+            localStorage.setItem('vurify:userKey', userKey);
 
-        data = signaturePad.toDataURL();
-        axios.post('/signatures', {
-            "_id": `${userKey}`,
-            "created":"01/01/2022",
-            "apiKey":"122333444455555",
-            "domain":"localhost",
-            "origin":"http://localhost:3030",
-            "image": data
-        })
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+            data = signaturePad.toDataURL();
+            axios.post('/signatures', {
+                "_id": `${userKey}`,
+                "created":"01/01/2022",
+                "apiKey":"122333444455555",
+                "domain":"localhost",
+                "origin":"http://localhost:3030",
+                "image": data
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
 
-    }
+        }
