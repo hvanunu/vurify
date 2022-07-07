@@ -28,13 +28,17 @@ body
                         span Remember me
                
                 //-vurify 
-                iframe(src="http://52.43.11.89/iframe/82484878783", width="300px", height="100px", frameBorder="0")
+                iframe(src="/iframe/12233344455555", width="300px", height="100px", frameBorder="0")
 
-                //-signIn button
+                //-signIn button.
                 - var buttonClass=['mt-2', 'btn', 'btn-lg', 'btn-primary', 'btn-block'];
-                button(class=buttonClass type="submit") Sign in
+                button(class=buttonClass, onclick="login()") Sign in
 
                 - var pClasses=['mt-5', 'mb-3', 'text-muted'];
                 p(class=pClasses) &copy; 2022
-
+    script.
+        function login(){
+            window.location.href = "/signature"
+        }
+        
     script(src= "/parent.js")

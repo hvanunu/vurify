@@ -1,6 +1,7 @@
 html
     head    
         link(rel='stylesheet', href='/assets/iframe.css')
+        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
     body
         span#apiKey(hidden)= apiKey
         div.outer
@@ -12,18 +13,20 @@ html
         script(src="/lib/underscore.js")
         script(src="/iframe.js")
         script.
-            localStorage.getItem('vurify:vurify_vendor_key6')
+            localStorage.getItem('vurify:userKey')
             .done(function(id){
                 if(id === null){
-                    let userKey = "787387878235dfdf5"
-                    let apiKey = $("#apiKey").text()
-                    localStorage.setItem('vurify:vurify_vendor_key6', `${apiKey}:${userKey}`)
-                    console.log("written", `${apiKey}:${userKey}`)
+                    console.log("No User Key")
                 }
                 else {
-                    // TODO: load image from id
-                    $("userImage").src = "/assets/default.png"
-                    console.log("read", id)
+                    let sig = axios.get('/signatures/' + id)
+                    .then(function (response) {
+                        console.log(response);
+                        $('img.userImage').attr('src', response.data.image)
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
                 }
             });
 
